@@ -1,0 +1,31 @@
+Objective:
+Develop a minimal full-stack application that demonstrates your capabilities in both front-end and back-end development, with a focus on Python (Django) and JavaScript frameworks. This project is an opportunity for you to illustrate your technical strengths, decision-making process, and your approach to solving practical problems.
+Project Brief:
+Scope:
+You will create a web application that allows users to send interest messages to other users. The recipient can then accept or reject the interest, and if accepted, both users can chat with each other. The project should utilize Django for the backend and Angular or React for the frontend.
+Core Features:
+User Authentication:
+Implement a simple user authentication system where users can register and log in.
+Sending Interests:
+Allow logged-in users to browse a list of other users and send an interest message to any user.
+Accepting/Rejecting Interests:
+Provide functionality for users to view received interest messages and accept or reject them.
+Chat System:
+If an interest is accepted, enable a chat interface where both users can send and receive messages in real-time.
+Expectations:
+Time Management:
+Aim to spend no more than 10 hours on this task. Prioritize features based on importance and feasibility.
+Documentation:
+Document your design choices, any assumptions made during development, and instructions for setting up and running the application. Include a section outlining any incomplete aspects of the project and potential next steps given more time.
+Testing:
+Write tests to cover critical functionality of your application. Emphasize quality and coverage to demonstrate your approach to software quality assurance.
+Submission:
+Please host your code WITH ALL THE INTERMEDIATE COMMITS (it will help us to understand how you code, etc.) on GitHub and provide us with a link to your repository. Ensure your README.md contains all necessary instructions for running your project.
+Evaluation Criteria:
+Code Quality: Clarity, maintainability, and adherence to best practices.
+Functionality: Completeness and functionality of the core features.
+Problem-Solving: Effectiveness in addressing the challenges presented by the project brief.
+Innovation: Creativity in feature implementation and tackling potential limitations.
+Deadline:
+Please submit your project within one week from today. If you have any questions or need clarification, feel free to reach out.
+Submit your test by email to dreamjob@zentratech.com

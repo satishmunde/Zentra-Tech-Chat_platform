@@ -1,0 +1,73 @@
+<!-- templates/chat/room.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Chat Room</h5>
+            </div>
+            <div class="card-body" id="chat-log">
+                <!-- Chat messages will be appended here -->
+            </div>
+            <div class="card-footer">
+                <div class="input-group mb-3">
+                    <input id="chat-message-input" type="text" class="form-control" placeholder="Type your message...">
+                    <button id="chat-message-submit" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const roomName = "{{ room_name }}";
+        const chatSocket = new WebSocket(
+            'ws://127.0.0.1:8001/ws/chat/munde/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const message = data['message'];
+            const username = data['sender'];
+            const chatLog = document.querySelector('#chat-log');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('mb-2'); // Adding margin bottom for spacing
+            messageElement.innerHTML = '<strong>' + username + '</strong>: ' + message;
+            chatLog.appendChild(messageElement);
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // Enter key
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                "sender": "munde",
+                "recipient": "satish",
+                "message": message
+              }));
+            messageInputDom.value = '';
+        };
+    </script>
+
+    <!-- Bootstrap JS (optional, if needed for other Bootstrap components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

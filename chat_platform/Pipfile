@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djoser = "*"
+drf-yasg = "*"
+channels = "*"
+daphne = "*"
+twisted = {extras = ["http2", "tls"], version = "*"}
+pillow = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
