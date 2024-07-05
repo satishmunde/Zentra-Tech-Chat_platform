@@ -26,8 +26,9 @@ SECRET_KEY = 'django-insecure-=8i_urqg=&2zo#q$yq0^d50&cpqk+tl5cd@bsd2l!sr(yv&75m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# settings.py
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.154.71','0.0.0.0']
 
 # Application definition
 
@@ -45,11 +46,19 @@ INSTALLED_APPS = [
     'channels',
     'corsheaders',
     'drf_yasg',
+     'rest_framework_simplejwt',
 ]
 
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.122.71:8000",
+    "http://127.0.0.1:8000",
+  
+  
+   "http://localhost:5173",
+]
 
 # Channels configuration
 ASGI_APPLICATION = 'chat_platform.asgi.application'
@@ -86,10 +95,11 @@ AUTH_USER_MODEL ='core.LoginSystem'
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -171,10 +181,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1",
-]
-
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -201,9 +207,6 @@ REDOC_SETTINGS = {
    'LAZY_RENDERING': False,
 
 }
-
-
-
 
 STATICFILES_DIRS = [BASE_DIR,'static']
 
