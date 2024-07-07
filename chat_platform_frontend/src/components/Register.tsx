@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 interface FormData {
@@ -17,6 +18,8 @@ interface FormData {
 
 
 export default function Register() {
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -73,15 +76,9 @@ export default function Register() {
     }
     formPayload.append('password', formData.password);
 
-    const token = localStorage.getItem('token');
-
     try {
-      const response = await fetch('http://192.168.154.71:8000/auth/users/', {
+      const response = await fetch('http://127.0.0.1:8000/auth/users/', {
         method: 'POST',
-        headers: {
-          'Authorization': `JWT ${token}`,
-          // No need to set Content-Type for FormData, it's automatically set
-        },
         body: formPayload,
       });
 
@@ -102,6 +99,7 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       });
+      navigate('/');
     } catch (error) {
       setFormError('Registration failed. Please try again.');
       console.error('Registration failed:', error);

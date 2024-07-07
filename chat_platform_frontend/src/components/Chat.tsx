@@ -1,449 +1,113 @@
-import React from "react";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBIcon,
-  MDBBtn,
-  MDBTypography,
-  MDBTextArea,
-  MDBCardHeader,
-} from "mdb-react-ui-kit";
-
-export default function App() {
-  return (
-    <MDBContainer className="py-12" style={{ backgroundColor: "#eee" }}>
-      <MDBRow>
-
-        <MDBCol md="6" lg="5" xl="3" className="mb-4 mb-md-0">
-          <h5 className="font-weight-bold mb-3 text-center text-lg-start">
-            Member
-          </h5>
-
-          <MDBCard>
-            <MDBCardBody>
-              <MDBTypography listUnStyled className="mb-0">
-                <li
-                  className="p-2 border-bottom"
-                  style={{ backgroundColor: "#eee" }}
-                >
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">John Doe</p>
-                        <p className="small text-muted">
-                          Hello, Are you there?
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Just now</p>
-                      <span className="badge bg-danger float-end">1</span>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Danny Smith</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">5 mins ago</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Alex Steward</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Ashley Olsen</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Kate Moss</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Lara Croft</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Brad Pitt</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">5 mins ago</p>
-                      <span className="text-muted float-end">
-                        <MDBIcon fas icon="check" />
-                      </span>
-                    </div>
-                  </a>
-                </li>
-              </MDBTypography>
-            </MDBCardBody>
-          </MDBCard>
-
-        </MDBCol>
 
 
 
-        <MDBCol md="6" lg="5" xl="6" className="mb-4 mb-mb-0">
-          <h5 className="font-weight-bold mb-3 text-center text-lg-start">
-            Chat's
-          </h5>
+import React, { useState } from 'react';
+import MemberList from './MemberList';
 
-          <MDBTypography listUnStyled>
-            <li className="d-flex justify-content-between mb-4">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                alt="avatar"
-                className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                width="60"
-              />
-              <MDBCard>
-                <MDBCardHeader className="d-flex justify-content-between p-3">
-                  <p className="fw-bold mb-0">Brad Pitt</p>
-                  <p className="text-muted small mb-0">
-                    <MDBIcon far icon="clock" /> 12 mins ago
-                  </p>
-                </MDBCardHeader>
-                <MDBCardBody>
-                  <p className="mb-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
-            </li>
-            <li className="d-flex justify-content-between mb-4">
-              <MDBCard className="w-100">
-                <MDBCardHeader className="d-flex justify-content-between p-3">
-                  <p className="fw-bold mb-0">Lara Croft</p>
-                  <p className="text-muted small mb-0">
-                    <MDBIcon far icon="clock" /> 13 mins ago
-                  </p>
-                </MDBCardHeader>
-                <MDBCardBody>
-                  <p className="mb-0">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium.
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
-                alt="avatar"
-                className="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
-                width="60"
-              />
-            </li>
-            <li className="d-flex justify-content-between mb-4">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                alt="avatar"
-                className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                width="60"
-              />
-              <MDBCard>
-                <MDBCardHeader className="d-flex justify-content-between p-3">
-                  <p className="fw-bold mb-0">Brad Pitt</p>
-                  <p className="text-muted small mb-0">
-                    <MDBIcon far icon="clock" /> 10 mins ago
-                  </p>
-                </MDBCardHeader>
-                <MDBCardBody>
-                  <p className="mb-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
-            </li>
-            <li className="bg-white mb-3">
-              <MDBTextArea label="Message" id="textAreaExample" rows={4} />
-            </li>
-            <MDBBtn color="info" rounded className="float-end">
-              Send
-            </MDBBtn>
-          </MDBTypography>
-          <MDBCol>
+import Messages from './Messages';
+import { User, FriendRequest } from './types';
+import UserProfile from './UserProfile';
 
-          </MDBCol>
-
-        </MDBCol>
-
-        <MDBCol md="3" lg="5" xl="3" className="mb-4 mb-md-0">
-          <h5 className="font-weight-bold mb-3 text-center text-lg-start">
-            Invite Your Friends
-          </h5>
-
-          <MDBCard>
-            <MDBCardBody>
-              <MDBTypography listUnStyled className="mb-0">
-                <li
-                  className="p-2 border-bottom"
-                  style={{ backgroundColor: "#eee" }}
-                >
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">John Doe</p>
-                        <p className="small text-muted">
-                          Hello, Are you there?
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Just now</p>
-                      <span className="badge bg-danger float-end">1</span>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Danny Smith</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">5 mins ago</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Alex Steward</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Ashley Olsen</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Kate Moss</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2 border-bottom">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Lara Croft</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">Yesterday</p>
-                    </div>
-                  </a>
-                </li>
-                <li className="p-2">
-                  <a href="#!" className="d-flex justify-content-between">
-                    <div className="d-flex flex-row">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                        alt="avatar"
-                        className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                        width="60"
-                      />
-                      <div className="pt-1">
-                        <p className="fw-bold mb-0">Brad Pitt</p>
-                        <p className="small text-muted">
-                          Lorem ipsum dolor sit.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="pt-1">
-                      <p className="small text-muted mb-1">5 mins ago</p>
-                      <span className="text-muted float-end">
-                        <MDBIcon fas icon="check" />
-                      </span>
-                    </div>
-                  </a>
-                </li>
-              </MDBTypography>
-            </MDBCardBody>
-          </MDBCard>
-
-        </MDBCol>
-
-
-      </MDBRow>
-    </MDBContainer>
-  );
+interface Member {
+  id: string;
+  name: string;
+  avatar: string;
+  lastMessage: string;
+  lastMessageTime: string;
+  unreadCount?: number;
 }
+
+const Chat: React.FC = () => {
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+
+
+  const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([
+    {
+      id: '1',
+      requester: {
+        id: '2',
+        name: 'Jane Doe',
+        avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp',
+        commonFriends: ['John Smith', 'Mary Johnson'],
+      },
+    },
+    {
+      id: '2',
+      requester: {
+        id: '3',
+        name: 'Michael Brown',
+        avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-9.webp',
+        commonFriends: ['John Smith'],
+      },
+    },
+  ]);
+
+  const loggedUser: User = {
+    id: '1',
+    name: 'John Smith',
+    avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp',
+  };
+
+  const handleAcceptRequest = (id: string) => {
+    setFriendRequests(friendRequests.filter((request) => request.id !== id));
+    // Handle accept logic (e.g., updating the backend)
+  };
+
+  const handleRejectRequest = (id: string) => {
+    setFriendRequests(friendRequests.filter((request) => request.id !== id));
+    // Handle reject logic (e.g., updating the backend)
+  };
+
+  const members: Member[] = [
+    {
+      id: '1',
+      name: 'John Doe',
+      avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp',
+      lastMessage: 'Hello, Are you there?',
+      lastMessageTime: 'Just now',
+      unreadCount: 1,
+    },
+    {
+      id: '2',
+      name: 'Danny Smith',
+      avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp',
+      lastMessage: 'Lorem ipsum dolor sit.',
+      lastMessageTime: '5 mins ago',
+    },
+    {
+      id: '3',
+      name: 'Brad Pitt',
+      avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp',
+      lastMessage: 'Lorem ipsum dolor sit.',
+      lastMessageTime: '5 mins ago',
+    },
+  ];
+
+  return (
+    <div className="flex h-screen bg-gray-100">
+      {/* Left Section (UserProfile and MemberList) */}
+      <div className="flex w-1/3 bg-white shadow-lg">
+        <div className="w-full flex flex-col p-4">
+          <div className="mb-4">
+            <UserProfile
+              user={loggedUser}
+              friendRequests={friendRequests}
+              onAcceptRequest={handleAcceptRequest}
+              onRejectRequest={handleRejectRequest}
+            />
+          </div>
+          <div>
+            <MemberList members={members} onSelectMember={setSelectedMember} />
+          </div>
+        </div>
+      </div>
+
+      {/* Right Section (Messages) */}
+      <div className="flex-1 p-4">
+        <Messages selectedMember={selectedMember} />
+      </div>
+    </div>
+  );
+};
+
+export default Chat;

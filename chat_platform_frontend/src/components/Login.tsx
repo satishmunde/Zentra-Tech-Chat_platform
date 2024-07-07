@@ -11,7 +11,7 @@ export default function Login() {
   const handleLogin = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     console.log(JSON.stringify({ username, password }));
-    const response = await fetch('http://192.168.154.71:8000/auth/jwt/create', {
+    const response = await fetch('http://127.0.0.1:8000/auth/jwt/create/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Specify the content type here
@@ -19,15 +19,15 @@ export default function Login() {
       body: JSON.stringify({ username, password }),
     });
 
-    console.log(response);
 
+    const data = await response.json();
 
     if (response.ok) {
-      const data = await response.json();
+
       localStorage.setItem('token', data.access);
       navigate('/chat');
     } else {
-      alert('Login failed');
+      alert(data.detail);
     }
   };
 
