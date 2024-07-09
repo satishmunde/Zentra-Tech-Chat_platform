@@ -25,11 +25,55 @@ export default function Login() {
     if (response.ok) {
 
       localStorage.setItem('token', data.access);
+
+      storeUserDataInLocalStorage(localStorage.getItem('token'));
+
+
       navigate('/chat');
     } else {
       alert(data.detail);
     }
   };
+
+  const getUserData = async (token: string | null) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/auth/users/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `JWT ${token}`,
+          'Content-Type': 'application/json'
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+
+      const userData = await response.json();
+
+      return userData;
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      return null;
+    }
+  };
+
+
+  const storeUserDataInLocalStorage = async (token: string | null) => {
+    try {
+      const userData = await getUserData(token);
+      if (userData) {
+        localStorage.setItem('userData', JSON.stringify(userData));
+        console.log('User data stored in local storage:', userData);
+      } else {
+        console.error('Failed to fetch user data');
+      }
+    } catch (error) {
+      console.error('Error storing user data in local storage:', error);
+    }
+  };
+
+  // Usage example (assuming you have a JWT token stored somewhere)
 
 
   return (

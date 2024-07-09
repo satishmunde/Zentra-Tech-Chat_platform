@@ -13,11 +13,11 @@ class LoginSystemSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(BaseUserCreateSerializer):
     
     class Meta(BaseUserCreateSerializer.Meta):
-        ref_name = "UserCreate"  # Set a distinct ref_name for UserCreateSerializer
-        fields = ['username', 'first_name','last_name', 'email', 'date_of_birth', 'phone_number','profile_pictures','password']
+        ref_name = "UserCreate"  
+        fields = ['id','username', 'first_name','last_name', 'email', 'date_of_birth', 'phone_number','profile_pictures','password']
 
 
 class UserSerializer(BaseUserSerializer):
     class Meta(BaseUserSerializer.Meta):
-        ref_name = "BaseUser"  # Set a distinct ref_name for UserSerializer
-        fields = ['username', 'first_name','last_name', 'email', 'date_of_birth', 'phone_number','profile_pictures']
+        ref_name = "BaseUser"  
+        fields = ['id','username', 'first_name','last_name', 'email', 'date_of_birth', 'phone_number','profile_pictures']

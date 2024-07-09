@@ -1,14 +1,11 @@
-
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MemberList from './MemberList';
-
 import Messages from './Messages';
-import { User, FriendRequest } from './types';
 import UserProfile from './UserProfile';
+import { FriendRequest } from './types';
 
 interface Member {
+  username: string;
   id: string;
   name: string;
   avatar: string;
@@ -19,69 +16,178 @@ interface Member {
 
 const Chat: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([]);
+  const [members, setMembers] = useState<Member[]>([]);
+  const [selectedMemberMessages, setSelectedMemberMessages] = useState([]);
 
+  useEffect(() => {
+    // Fetch friend requests
+    const fetchFriendRequests = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://127.0.0.1:8000/users/friendrequest', {
+          method: 'GET',
+          headers: {
+            'Authorization': `JWT ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch friend requests');
+        }
+        const data = await response.json();
 
-  const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([
-    {
-      id: '1',
-      requester: {
-        id: '2',
-        name: 'Jane Doe',
-        avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp',
-        commonFriends: ['John Smith', 'Mary Johnson'],
-      },
-    },
-    {
-      id: '2',
-      requester: {
-        id: '3',
-        name: 'Michael Brown',
-        avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-9.webp',
-        commonFriends: ['John Smith'],
-      },
-    },
-  ]);
+        console.log(data);
 
-  const loggedUser: User = {
-    id: '1',
-    name: 'John Smith',
-    avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp',
+        setFriendRequests(data);
+      } catch (error) {
+        console.error('Error fetching friend requests:', error);
+      }
+    };
+
+    // Fetch members
+    const fetchMembers = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://127.0.0.1:8000/users/members', {
+          method: 'GET',
+          headers: {
+            'Authorization': `JWT ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch members');
+        }
+        const data = await response.json();
+        console.log(data);
+
+        setMembers(data);
+      } catch (error) {
+        console.error('Error fetching members:', error);
+      }
+    };
+
+    fetchFriendRequests();
+    fetchMembers();
+  }, []);
+
+  useEffect(() => {
+    if (selectedMember) {
+      fetchMessages(selectedMember.username).then((messages) => {
+        setSelectedMemberMessages(messages || []);
+      });
+    }
+  }, [selectedMember]);
+
+  const fetchMessages = async (memberId: string) => {
+    try {
+      console.log(memberId);
+
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://127.0.0.1:8000/api/messages?memberId=${memberId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `JWT ${token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch messages');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+      return null;
+    }
   };
 
-  const handleAcceptRequest = (id: string) => {
-    setFriendRequests(friendRequests.filter((request) => request.id !== id));
+
+  const loggedUser = localStorage.getItem('userData')
+  console.log();
+
+  const handleAcceptRequest = async (id: number) => {
+    // setFriendRequests(friendRequests.filter((request) => request.id !== id));
     // Handle accept logic (e.g., updating the backend)
+
+    console.log(id);
+
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/updateinterests/${id}`, {
+
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('token')}`, // Assuming you're using JWT tokens
+        },
+        body: JSON.stringify({
+          status: 'accepted',
+
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Interest created successfully:', data);
+    } catch (error) {
+      console.error('Error creating interest:', error);
+    }
   };
 
-  const handleRejectRequest = (id: string) => {
-    setFriendRequests(friendRequests.filter((request) => request.id !== id));
+  const handleRejectRequest = async (id: number) => {
+    // setFriendRequests(friendRequests.filter((request) => request.id !== id));
     // Handle reject logic (e.g., updating the backend)
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/updateinterests/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('token')}`, // Assuming you're using JWT tokens
+        },
+        body: JSON.stringify({
+          status: 'rejected',
+
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Interest created successfully:', data);
+    } catch (error) {
+      console.error('Error creating interest:', error);
+    }
+  };
+  const onConnectWithEmployee = async (username: string) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/interests/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `JWT ${localStorage.getItem('token')}`, // Assuming you're using JWT tokens
+        },
+        body: JSON.stringify({
+          recipient: username,
+          message: `request for ${username}`,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Interest created successfully:', data);
+    } catch (error) {
+      console.error('Error creating interest:', error);
+    }
   };
 
-  const members: Member[] = [
-    {
-      id: '1',
-      name: 'John Doe',
-      avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp',
-      lastMessage: 'Hello, Are you there?',
-      lastMessageTime: 'Just now',
-      unreadCount: 1,
-    },
-    {
-      id: '2',
-      name: 'Danny Smith',
-      avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp',
-      lastMessage: 'Lorem ipsum dolor sit.',
-      lastMessageTime: '5 mins ago',
-    },
-    {
-      id: '3',
-      name: 'Brad Pitt',
-      avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp',
-      lastMessage: 'Lorem ipsum dolor sit.',
-      lastMessageTime: '5 mins ago',
-    },
-  ];
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -94,17 +200,20 @@ const Chat: React.FC = () => {
               friendRequests={friendRequests}
               onAcceptRequest={handleAcceptRequest}
               onRejectRequest={handleRejectRequest}
+              onConnectWithEmployee={onConnectWithEmployee}
             />
           </div>
           <div>
-            <MemberList members={members} onSelectMember={setSelectedMember} />
+            <MemberList members={members} onSelectMember={setSelectedMember} fetchMessages={fetchMessages} />
           </div>
         </div>
       </div>
 
       {/* Right Section (Messages) */}
       <div className="flex-1 p-4">
-        <Messages selectedMember={selectedMember} />
+        {selectedMember && (
+          <Messages loggedUser={loggedUser} selectedMember={selectedMember} selectedMemberMessage={selectedMemberMessages} />
+        )}
       </div>
     </div>
   );

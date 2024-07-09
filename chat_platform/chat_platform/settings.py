@@ -60,8 +60,7 @@ CORS_ALLOWED_ORIGINS = [
    "http://localhost:5173",
 ]
 
-# Channels configuration
-ASGI_APPLICATION = 'chat_platform.asgi.application'
+
 REST_FRAMEWORK = {
     'CORE_DECIMAL_TO_STRING':False,
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -123,7 +122,8 @@ TEMPLATES = [
         },
     },
 ]
-
+# Channels configuration
+ASGI_APPLICATION = 'chat_platform.asgi.application'
 WSGI_APPLICATION = 'chat_platform.wsgi.application'
 
 

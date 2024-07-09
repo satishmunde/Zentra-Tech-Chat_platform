@@ -1,7 +1,9 @@
 # chat/consumers.py
 
+import datetime
 from channels.generic.websocket import AsyncWebsocketConsumer
 import json
+# from api.models import content
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -24,37 +26,39 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
     async def receive(self, text_data):
-        print(text_data)
         text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+        content = text_data_json['content']
         sender = text_data_json['sender']
         recipient = text_data_json['recipient']
 
-        # Send message to recipient
-        await self.send_message(message, sender, recipient)
 
-    async def send_message(self, message, sender, recipient):
-        # Format the message data
-        message_data = {
+        # Send content to recipient
+        await self.send_content(content, sender, recipient)
+
+    async def send_content(self, content, sender, recipient):
+        print('print send content called')
+        
+         # Format the content data
+        content_data = {
             'sender': sender,
-            'message': message
+            'content': content
         }
+        
 
-        # Send message to recipient's group
         recipient_room_group_name = f'chat_{recipient}'
         await self.channel_layer.group_send(
             recipient_room_group_name,
             {
-                'type': 'chat.message',
-                'message_data': message_data
+                'type': 'chat_content',
+                'content_data': content_data
             }
         )
 
-    async def chat_message(self, event):
-        message_data = event['message_data']
-
-        # Send message to WebSocket
+    async def chat_content(self, event):
+        content_data = event['content_data']
+        # Send content to WebSocket
         await self.send(text_data=json.dumps({
-            'message': message_data['message'],
-            'sender': message_data['sender']
+            'content': content_data['content'],
+            'sender': content_data['sender'],
+            'timestamp':datetime.now(),
         }))
